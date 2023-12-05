@@ -249,3 +249,15 @@ footer img {
 footer img:hover { opacity: .83; }
 
 footer img:focus , footer a:focus { outline: none; }
+
+.header h1 {
+	text-align: center;
+	font-size: 2em; /* Adjust size as needed */
+	margin-bottom: 0.5em; /* Spacing between title and welcome message */
+  }
+  
+  #welcomeMessage {
+	text-align: center;
+	margin-bottom: 1em; /* Spacing between welcome message and form */
+  }
+  

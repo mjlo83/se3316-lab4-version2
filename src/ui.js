@@ -18,6 +18,8 @@ export const txtNewPassword = document.querySelector('#txtNewPassword');
 export const btnChangePassword = document.querySelector('#btnChangePassword');
 export const divPasswordChangeError = document.querySelector('#divPasswordChangeError');
 export const lblPasswordChangeErrorMessage = document.querySelector('#lblPasswordChangeErrorMessage');
+export const welcomeMessage = document.querySelector('#welcomeMessage');
+
 
 
 
@@ -34,17 +36,16 @@ export const hidePasswordChangeError = () => {
 
 
 
-
-
-
 export const showLoginForm = () => {
   login.style.display = 'block'
   app.style.display = 'none'  
+  welcomeMessage.style.display = 'block'; 
 }
 
 export const showApp = () => {
   login.style.display = 'none'
   app.style.display = 'block'
+  welcomeMessage.style.display = 'none';
 }
 
 export const hideLoginError = () => {
