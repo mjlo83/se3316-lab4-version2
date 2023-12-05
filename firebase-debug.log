@@ -1,0 +1,33 @@
+[debug] [2023-12-05T19:49:28.870Z] ----------------------------------------------------------------------
+[debug] [2023-12-05T19:49:28.872Z] Command:       /usr/local/bin/node /Users/madisonlo/.npm-global/bin/firebase serve --only hosting
+[debug] [2023-12-05T19:49:28.872Z] CLI Version:   12.9.1
+[debug] [2023-12-05T19:49:28.872Z] Platform:      darwin
+[debug] [2023-12-05T19:49:28.872Z] Node Version:  v20.9.0
+[debug] [2023-12-05T19:49:28.872Z] Time:          Tue Dec 05 2023 14:49:28 GMT-0500 (Eastern Standard Time)
+[debug] [2023-12-05T19:49:28.872Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-05T19:49:28.939Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-05T19:49:28.939Z] > authorizing via signed-in user (madisonjlo88@gmail.com)
+[debug] [2023-12-05T19:49:28.940Z] [iam] checking project login-ad25a for permissions ["firebase.projects.get"]
+[debug] [2023-12-05T19:49:28.940Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/login-ad25a:testIamPermissions [none]
+[debug] [2023-12-05T19:49:28.941Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/login-ad25a:testIamPermissions x-goog-quota-user=projects/login-ad25a
+[debug] [2023-12-05T19:49:28.941Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/login-ad25a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-12-05T19:49:29.075Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/login-ad25a:testIamPermissions 200
+[debug] [2023-12-05T19:49:29.075Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/login-ad25a:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-12-05T19:49:29.075Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a [none]
+[debug] [2023-12-05T19:49:29.367Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a 200
+[debug] [2023-12-05T19:49:29.367Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a {"projectId":"login-ad25a","projectNumber":"103410718436","displayName":"login","name":"projects/login-ad25a","resources":{"hostingSite":"login-ad25a","realtimeDatabaseInstance":"login-ad25a-default-rtdb"},"state":"ACTIVE","etag":"1_84bfae2c-040c-4201-adc2-31e51ef5811b"}
+[debug] [2023-12-05T19:49:29.369Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/login-ad25a/sites 
+[debug] [2023-12-05T19:49:29.896Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/login-ad25a/sites 200
+[debug] [2023-12-05T19:49:29.896Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/login-ad25a/sites {"sites":[{"name":"projects/login-ad25a/sites/login-ad25a","defaultUrl":"https://login-ad25a.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-12-05T19:49:29.897Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a/webApps/-/config [none]
+[debug] [2023-12-05T19:49:30.225Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a/webApps/-/config 200
+[debug] [2023-12-05T19:49:30.225Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a/webApps/-/config {"projectId":"login-ad25a","appId":"1:103410718436:web:ee01b7e993347f4a413ef1","databaseURL":"https://login-ad25a-default-rtdb.firebaseio.com","storageBucket":"login-ad25a.appspot.com","apiKey":"AIzaSyA0K_py-j72t7FufzsJg8af3KsFR6vxmzk","authDomain":"login-ad25a.firebaseapp.com","messagingSenderId":"103410718436","measurementId":"G-FXMKLXRC9D"}
+[debug] [2023-12-05T19:49:30.233Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a [none]
+[debug] [2023-12-05T19:49:30.417Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a 200
+[debug] [2023-12-05T19:49:30.417Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/login-ad25a {"projectId":"login-ad25a","projectNumber":"103410718436","displayName":"login","name":"projects/login-ad25a","resources":{"hostingSite":"login-ad25a","realtimeDatabaseInstance":"login-ad25a-default-rtdb"},"state":"ACTIVE","etag":"1_84bfae2c-040c-4201-adc2-31e51ef5811b"}
+[info] i  hosting[login-ad25a]: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] ✔  hosting[login-ad25a]: Local server: http://localhost:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5002\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [05/Dec/2023:19:49:37 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [05/Dec/2023:19:49:37 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [05/Dec/2023:19:49:37 +0000] "GET /styles.css HTTP/1.1" 404 149 "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [05/Dec/2023:19:49:37 +0000] \"GET /styles.css HTTP/1.1\" 404 149 \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [05/Dec/2023:19:49:37 +0000] "GET /bundle.js HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [05/Dec/2023:19:49:37 +0000] \"GET /bundle.js HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36\""}}

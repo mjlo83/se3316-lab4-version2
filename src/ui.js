@@ -30,15 +30,28 @@ export const hideLoginError = () => {
 }
 
 export const showLoginError = (error) => {
-  divLoginError.style.display = 'block'    
-  if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
-    lblLoginErrorMessage.innerHTML = `Wrong password. Try again.`
+    
+    divLoginError.style.display = 'block';    
+  
+    // Handle invalid email error
+    if (error.code === AuthErrorCodes.INVALID_EMAIL) {
+      lblLoginErrorMessage.innerHTML = 'Please enter a valid email address.';
+    }
+    // Handle email already in use error (relevant during signup)
+    else if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
+      lblLoginErrorMessage.innerHTML = 'This email address is already in use.';
+    }
+    // Handle incorrect password or invalid login credentials error (relevant during login)
+    else if (error.code === 'auth/wrong-password' || error.code === AuthErrorCodes.INVALID_PASSWORD) {
+      lblLoginErrorMessage.innerHTML = 'Incorrect password or invalid login credentials. Try again.';
+    }
+    // Handle other errors
+    else {
+      lblLoginErrorMessage.innerHTML = `Error: ${error.message}`;
+    }
   }
-  else {
-    lblLoginErrorMessage.innerHTML = `Error: ${error.message}`      
-  }
-}
-
+  
+  
 export const showLoginState = (user) => {
   lblAuthState.innerHTML = `You're logged in as ${user.displayName} (uid: ${user.uid}, email: ${user.email}) `
 }

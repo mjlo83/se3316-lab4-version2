@@ -11,6 +11,7 @@ import {
 } from './ui'
 
 import { initializeApp } from 'firebase/app';
+
 import { 
   getAuth,
   onAuthStateChanged, 
@@ -20,32 +21,38 @@ import {
   connectAuthEmulator
 } from 'firebase/auth';
 
+
+
 const firebaseApp = initializeApp({
-  apiKey: "dummy-apiKey",
-  authDomain: "dummy-authDomain.firebaseapp.com",
-  projectId: "dummy-project-id",
-  storageBucket: "dummy-authDomain.firebaseapp.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:7c7abae699b868b7f896ec",
-  measurementId: "G-ABCDEFGHIJ"
+  apiKey: "AIzaSyCu0pX5TlTf2fq2fQDizP5ybpvJ-iwDimw",
+  authDomain: "se3316loginversion2.firebaseapp.com",
+  projectId: "se3316loginversion2",
+  storageBucket: "se3316loginversion2.appspot.com",
+  messagingSenderId: "1068003737215",
+  appId: "1:1068003737215:web:bc5b37be6531fde599494a",
+  measurementId: "G-Z0YTYKMCXY"
+  
 });
 
 // Login using email/password
 const loginEmailPassword = async () => {
   const loginEmail = txtEmail.value
   const loginPassword = txtPassword.value
+  console.log("yes we caught it in index1")
+  
 
   // step 1: try doing this w/o error handling, and then add try/catch
-  await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+    await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
 
   // step 2: add error handling
-  // try {
-  //   await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-  // }
-  // catch(error) {
-  //   console.log(`There was an error: ${error}`)
-  //   showLoginError(error)
-  // }
+    try {
+        
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      console.log("yes we caught it in index2")
+    }
+    catch(error) {
+      showLoginError(error)
+    }
 }
 
 // Create new account using email/password
@@ -55,6 +62,7 @@ const createAccount = async () => {
 
   try {
     await createUserWithEmailAndPassword(auth, email, password)
+    console.log(userCredential.user);
   }
   catch(error) {
     console.log(`There was an error: ${error}`)
@@ -89,7 +97,8 @@ btnLogin.addEventListener("click", loginEmailPassword)
 btnSignup.addEventListener("click", createAccount)
 btnLogout.addEventListener("click", logout)
 
+
 const auth = getAuth(firebaseApp);
-connectAuthEmulator(auth, "http://localhost:9099");
+//connectAuthEmulator(auth, "http://localhost:9099");
 
 monitorAuthState();
