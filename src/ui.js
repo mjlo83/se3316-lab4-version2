@@ -14,6 +14,29 @@ export const lblAuthState = document.querySelector('#lblAuthState')
 export const divLoginError = document.querySelector('#divLoginError')
 export const lblLoginErrorMessage = document.querySelector('#lblLoginErrorMessage')
 
+export const txtNewPassword = document.querySelector('#txtNewPassword');
+export const btnChangePassword = document.querySelector('#btnChangePassword');
+export const divPasswordChangeError = document.querySelector('#divPasswordChangeError');
+export const lblPasswordChangeErrorMessage = document.querySelector('#lblPasswordChangeErrorMessage');
+
+
+
+export const showPasswordChangeError = (error) => {
+  divPasswordChangeError.style.display = 'block';
+  lblPasswordChangeErrorMessage.innerHTML = error.message;
+}
+
+export const hidePasswordChangeError = () => {
+  divPasswordChangeError.style.display = 'none';
+  lblPasswordChangeErrorMessage.innerHTML = '';
+}
+
+
+
+
+
+
+
 export const showLoginForm = () => {
   login.style.display = 'block'
   app.style.display = 'none'  
@@ -30,8 +53,7 @@ export const hideLoginError = () => {
 }
 
 export const showLoginError = (error) => {
-    
-    divLoginError.style.display = 'block';    
+    divLoginError.style.display = 'block'
   
     // Handle invalid email error
     if (error.code === AuthErrorCodes.INVALID_EMAIL) {

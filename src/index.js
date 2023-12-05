@@ -7,7 +7,13 @@ import {
   showLoginError, 
   btnLogin,
   btnSignup,
-  btnLogout
+  btnLogout,
+  txtNewPassword,
+  btnChangePassword,
+  showPasswordChangeError,
+  hidePasswordChangeError
+
+  
 } from './ui'
 
 import { initializeApp } from 'firebase/app';
@@ -18,7 +24,8 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  connectAuthEmulator
+  updatePassword
+
 } from 'firebase/auth';
 
 
@@ -40,6 +47,7 @@ const loginEmailPassword = async () => {
   const loginPassword = txtPassword.value
   console.log("yes we caught it in index1")
   
+  
 
   // step 1: try doing this w/o error handling, and then add try/catch
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -48,6 +56,7 @@ const loginEmailPassword = async () => {
     try {
         
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      
       console.log("yes we caught it in index2")
     }
     catch(error) {
@@ -92,6 +101,32 @@ const monitorAuthState = async () => {
 const logout = async () => {
   await signOut(auth);
 }
+// Change password function
+const changePassword = async () => {
+    const newPassword = txtNewPassword.value;
+    const user = auth.currentUser;
+  
+    if (!newPassword) {
+      showPasswordChangeError({ message: "Please enter a new password." });
+      return;
+    }
+  
+    try {
+      await updatePassword(user, newPassword);
+      alert("Password changed successfully.");
+      txtNewPassword.value = ''; // Clear the input field
+      hidePasswordChangeError();
+    } catch (error) {
+      console.error("Error changing password: ", error);
+      showPasswordChangeError(error);
+    }
+  };
+  
+  // Attach event listener to change password button
+  btnChangePassword.addEventListener("click", changePassword);
+  
+  // Event listener for change password button
+
 
 btnLogin.addEventListener("click", loginEmailPassword) 
 btnSignup.addEventListener("click", createAccount)
