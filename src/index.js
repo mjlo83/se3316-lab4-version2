@@ -12,6 +12,7 @@ import {
   btnChangePassword,
   showPasswordChangeError,
   hidePasswordChangeError
+  
 
   
 } from './ui'
@@ -24,7 +25,8 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updatePassword
+  updatePassword,
+  sendEmailVerification
 
 } from 'firebase/auth';
 
@@ -39,46 +41,56 @@ const firebaseApp = initializeApp({
   appId: "1:1068003737215:web:bc5b37be6531fde599494a",
   measurementId: "G-Z0YTYKMCXY"
   
-});
+})
 
-// Login using email/password
-const loginEmailPassword = async () => {
-  const loginEmail = txtEmail.value
-  const loginPassword = txtPassword.value
-  console.log("yes we caught it in index1")
-  
-  
 
-  // step 1: try doing this w/o error handling, and then add try/catch
-    await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
 
-  // step 2: add error handling
-    try {
-        
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      
-      console.log("yes we caught it in index2")
-    }
-    catch(error) {
-      showLoginError(error)
-    }
-}
 
-// Create new account using email/password
 const createAccount = async () => {
-  const email = txtEmail.value
-  const password = txtPassword.value
+    const email = txtEmail.value;
+    const password = txtPassword.value;
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(userCredential.user);
+      // Send verification email
+      sendEmailVerification(userCredential.user)
+        .then(() => {
+          alert("Signup successful. Verification email sent.");
+        })
+        .catch((error) => {
+          console.error("Error sending verification email: ", error);
+        });
+    } catch (error) {
+      console.log(`There was an error: ${error}`);
+      showLoginError(error);
+    } 
+  };
+  
 
-  try {
-    await createUserWithEmailAndPassword(auth, email, password)
-    console.log(userCredential.user);
-  }
-  catch(error) {
-    console.log(`There was an error: ${error}`)
-    showLoginError(error)
-  } 
-}
-
+const loginEmailPassword = async () => {
+    const loginEmail = txtEmail.value;
+    const loginPassword = txtPassword.value;
+  
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      
+      if (userCredential.user.emailVerified) {
+        console.log("Email is verified");
+        // User can log in
+        showApp();
+        showLoginState(userCredential.user);
+      } else {
+        // Email is not verified
+        alert("Please verify your account before logging in.");
+        await signOut(auth); // Optionally sign the user out
+      }
+    } catch (error) {
+      console.error("Login error: ", error);
+      showLoginError(error);
+    }
+  };
+  
 // Monitor auth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
@@ -86,7 +98,6 @@ const monitorAuthState = async () => {
       console.log(user)
       showApp()
       showLoginState(user)
-
       hideLoginError()
       hideLinkError()
     }
