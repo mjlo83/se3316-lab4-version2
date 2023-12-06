@@ -142,6 +142,10 @@ const changePassword = async () => {
 btnLogin.addEventListener("click", loginEmailPassword) 
 btnSignup.addEventListener("click", createAccount)
 btnLogout.addEventListener("click", logout)
+btnBeginSuperSite.addEventListener("click", () => {
+    window.location.href = 'http://localhost:3000/'; // URL of the SuperSite
+  });
+  
 
 
 const auth = getAuth(firebaseApp);
